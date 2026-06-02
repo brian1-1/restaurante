@@ -1,0 +1,2342 @@
+================================================================================
+  PROJETO: TRATTORIA — Sistema de Gestão de Restaurante
+  Stack: TanStack Start + React 19 + Tailwind CSS v4 + Supabase (Lovable Cloud)
+================================================================================
+
+--- package.json ---
+{
+  "name": "tanstack_start_ts",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "build:dev": "vite build --mode development",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-alert-dialog": "^1.1.15",
+    "@radix-ui/react-aspect-ratio": "^1.1.8",
+    "@radix-ui/react-avatar": "^1.1.11",
+    "@radix-ui/react-checkbox": "^1.3.3",
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "@radix-ui/react-context-menu": "^2.2.16",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-hover-card": "^1.1.15",
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-menubar": "^1.1.16",
+    "@radix-ui/react-navigation-menu": "^1.2.14",
+    "@radix-ui/react-popover": "^1.1.15",
+    "@radix-ui/react-progress": "^1.1.8",
+    "@radix-ui/react-radio-group": "^1.3.8",
+    "@radix-ui/react-scroll-area": "^1.2.10",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-separator": "^1.1.8",
+    "@radix-ui/react-slider": "^1.3.6",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-switch": "^1.2.6",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@radix-ui/react-toggle": "^1.1.10",
+    "@radix-ui/react-toggle-group": "^1.1.11",
+    "@radix-ui/react-tooltip": "^1.2.8",
+    "@supabase/supabase-js": "^2.106.2",
+    "@tailwindcss/vite": "^4.2.1",
+    "@tanstack/react-query": "^5.83.0",
+    "@tanstack/react-router": "^1.168.25",
+    "@tanstack/react-start": "^1.167.50",
+    "@tanstack/router-plugin": "^1.167.28",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "date-fns": "^4.1.0",
+    "embla-carousel-react": "^8.6.0",
+    "input-otp": "^1.4.2",
+    "lucide-react": "^0.575.0",
+    "react": "^19.2.0",
+    "react-day-picker": "^9.14.0",
+    "react-dom": "^19.2.0",
+    "react-hook-form": "^7.71.2",
+    "react-resizable-panels": "^4.6.5",
+    "recharts": "^2.15.4",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^4.2.1",
+    "tw-animate-css": "^1.3.4",
+    "vaul": "^1.1.2",
+    "vite-tsconfig-paths": "^6.0.2",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@lovable.dev/vite-tanstack-config": "^2.1.1",
+    "@types/node": "^22.16.5",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^15.15.0",
+    "nitro": "3.0.260429-beta",
+    "prettier": "^3.7.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.56.1",
+    "vite": "^7.3.1"
+  }
+}
+
+--- .env ---
+SUPABASE_PUBLISHABLE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indtd3B2cHpxdmNja2dxaXFxeHBmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0MjQ3NDYsImV4cCI6MjA5NjAwMDc0Nn0.9md_2Mk_rb7Bio0xhI9cEYy2uamJ6LFb3s-CQqfa1Zk"
+SUPABASE_URL="https://wmwpvpzqvcckgqiqqxpf.supabase.co"
+VITE_SUPABASE_PROJECT_ID="wmwpvpzqvcckgqiqqxpf"
+VITE_SUPABASE_PUBLISHABLE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indtd3B2cHpxdmNja2dxaXFxeHBmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0MjQ3NDYsImV4cCI6MjA5NjAwMDc0Nn0.9md_2Mk_rb7Bio0xhI9cEYy2uamJ6LFb3s-CQqfa1Zk"
+VITE_SUPABASE_URL="https://wmwpvpzqvcckgqiqqxpf.supabase.co"
+
+--- src/styles.css ---
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-display: "Playfair Display", Georgia, serif;
+  --shadow-warm: 0 8px 30px -10px color-mix(in oklab, var(--primary) 35%, transparent);
+}
+
+:root {
+  --radius: 0.75rem;
+  /* Casseiro italiano: creme quente, terracota, oliva, mostarda */
+  --background: oklch(0.975 0.018 80);
+  --foreground: oklch(0.24 0.04 40);
+  --card: oklch(0.995 0.012 85);
+  --card-foreground: oklch(0.24 0.04 40);
+  --popover: oklch(0.995 0.012 85);
+  --popover-foreground: oklch(0.24 0.04 40);
+  /* Terracota como primária */
+  --primary: oklch(0.55 0.17 35);
+  --primary-foreground: oklch(0.98 0.01 80);
+  /* Oliva escuro como secundária */
+  --secondary: oklch(0.45 0.07 130);
+  --secondary-foreground: oklch(0.98 0.01 80);
+  --muted: oklch(0.93 0.02 80);
+  --muted-foreground: oklch(0.45 0.03 60);
+  /* Mostarda como accent */
+  --accent: oklch(0.78 0.14 80);
+  --accent-foreground: oklch(0.24 0.04 40);
+  --destructive: oklch(0.55 0.22 28);
+  --destructive-foreground: oklch(0.98 0.01 80);
+  --success: oklch(0.55 0.14 145);
+  --success-foreground: oklch(0.98 0.01 80);
+  --warning: oklch(0.72 0.16 65);
+  --warning-foreground: oklch(0.24 0.04 40);
+  --border: oklch(0.88 0.025 70);
+  --input: oklch(0.88 0.025 70);
+  --ring: oklch(0.55 0.17 35);
+}
+
+.dark {
+  --background: oklch(0.18 0.02 40);
+  --foreground: oklch(0.96 0.015 80);
+  --card: oklch(0.22 0.025 40);
+  --card-foreground: oklch(0.96 0.015 80);
+  --popover: oklch(0.22 0.025 40);
+  --popover-foreground: oklch(0.96 0.015 80);
+  --primary: oklch(0.65 0.18 35);
+  --primary-foreground: oklch(0.18 0.02 40);
+  --secondary: oklch(0.55 0.08 130);
+  --secondary-foreground: oklch(0.96 0.015 80);
+  --muted: oklch(0.28 0.02 40);
+  --muted-foreground: oklch(0.7 0.02 70);
+  --accent: oklch(0.78 0.14 80);
+  --accent-foreground: oklch(0.18 0.02 40);
+  --destructive: oklch(0.6 0.22 28);
+  --destructive-foreground: oklch(0.98 0.01 80);
+  --success: oklch(0.6 0.14 145);
+  --success-foreground: oklch(0.98 0.01 80);
+  --warning: oklch(0.75 0.16 65);
+  --warning-foreground: oklch(0.18 0.02 40);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.65 0.18 35);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+--- src/start.ts ---
+import { createStart, createMiddleware } from "@tanstack/react-start";
+
+import { renderErrorPage } from "./lib/error-page";
+import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
+
+const errorMiddleware = createMiddleware().server(async ({ next }) => {
+  try {
+    return await next();
+  } catch (error) {
+    if (error != null && typeof error === "object" && "statusCode" in error) {
+      throw error;
+    }
+    console.error(error);
+    return new Response(renderErrorPage(), {
+      status: 500,
+      headers: { "content-type": "text/html; charset=utf-8" },
+    });
+  }
+});
+
+export const startInstance = createStart(() => ({
+  functionMiddleware: [attachSupabaseAuth],
+  requestMiddleware: [errorMiddleware],
+}));
+
+--- src/router.tsx ---
+import { QueryClient } from "@tanstack/react-query";
+import { createRouter } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
+
+export const getRouter = () => {
+  const queryClient = new QueryClient();
+
+  const router = createRouter({
+    routeTree,
+    context: { queryClient },
+    scrollRestoration: true,
+    defaultPreloadStaleTime: 0,
+  });
+
+  return router;
+};
+
+--- src/server.ts ---
+import "./lib/error-capture";
+
+import { consumeLastCapturedError } from "./lib/error-capture";
+import { renderErrorPage } from "./lib/error-page";
+
+type ServerEntry = {
+  fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
+};
+
+let serverEntryPromise: Promise<ServerEntry> | undefined;
+
+async function getServerEntry(): Promise<ServerEntry> {
+  if (!serverEntryPromise) {
+    serverEntryPromise = import("@tanstack/react-start/server-entry").then(
+      (m) => (m.default ?? m) as ServerEntry,
+    );
+  }
+  return serverEntryPromise;
+}
+
+// h3 swallows in-handler throws into a normal 500 Response with body
+// {"unhandled":true,"message":"HTTPError"} — try/catch alone never fires for those.
+async function normalizeCatastrophicSsrResponse(response: Response): Promise<Response> {
+  if (response.status < 500) return response;
+  const contentType = response.headers.get("content-type") ?? "";
+  if (!contentType.includes("application/json")) return response;
+
+  const body = await response.clone().text();
+  if (!body.includes('"unhandled":true') || !body.includes('"message":"HTTPError"')) {
+    return response;
+  }
+
+  console.error(consumeLastCapturedError() ?? new Error(`h3 swallowed SSR error: ${body}`));
+  return new Response(renderErrorPage(), {
+    status: 500,
+    headers: { "content-type": "text/html; charset=utf-8" },
+  });
+}
+
+export default {
+  async fetch(request: Request, env: unknown, ctx: unknown) {
+    try {
+      const handler = await getServerEntry();
+      const response = await handler.fetch(request, env, ctx);
+      return await normalizeCatastrophicSsrResponse(response);
+    } catch (error) {
+      console.error(error);
+      return new Response(renderErrorPage(), {
+        status: 500,
+        headers: { "content-type": "text/html; charset=utf-8" },
+      });
+    }
+  },
+};
+
+--- src/routes/__root.tsx ---
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  Outlet,
+  Link,
+  createRootRouteWithContext,
+  useRouter,
+  HeadContent,
+  Scripts,
+} from "@tanstack/react-router";
+import { useEffect, type ReactNode } from "react";
+
+import appCss from "../styles.css?url";
+import { reportLovableError } from "../lib/lovable-error-reporting";
+import { AuthProvider } from "@/lib/auth-context";
+import { Toaster } from "@/components/ui/sonner";
+
+function NotFoundComponent() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="max-w-md text-center">
+        <h1 className="text-7xl font-bold">404</h1>
+        <p className="mt-2 text-muted-foreground">Página não encontrada</p>
+        <Link to="/" className="mt-6 inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90">
+          Voltar ao início
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+  console.error(error);
+  const router = useRouter();
+  useEffect(() => {
+    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+  }, [error]);
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="max-w-md text-center">
+        <h1 className="text-xl font-semibold">Algo deu errado</h1>
+        <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
+        <button
+          onClick={() => { router.invalidate(); reset(); }}
+          className="mt-6 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+        >
+          Tentar novamente
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "Trattoria — Gestão do Restaurante" },
+      { name: "description", content: "Comanda digital, pedidos pelo tablet, cozinha em tempo real e pagamento ágil." },
+    ],
+    links: [{ rel: "stylesheet", href: appCss }],
+  }),
+  shellComponent: RootShell,
+  component: RootComponent,
+  notFoundComponent: NotFoundComponent,
+  errorComponent: ErrorComponent,
+});
+
+function RootShell({ children }: { children: ReactNode }) {
+  return (
+    <html lang="pt-BR">
+      <head>
+        <HeadContent />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+function RootComponent() {
+  const { queryClient } = Route.useRouteContext();
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Outlet />
+        <Toaster richColors position="top-right" />
+      </AuthProvider>
+    </QueryClientProvider>
+  );
+}
+
+--- src/routes/index.tsx ---
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { useAuth } from "@/lib/auth-context";
+import { Button } from "@/components/ui/button";
+import { ChefHat, Tablet, CreditCard, Settings, UtensilsCrossed } from "lucide-react";
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Trattoria — Sistema do Restaurante" },
+      { name: "description", content: "Comanda digital, pedidos por tablet, cozinha em tempo real e pagamento ágil." },
+    ],
+  }),
+  component: Home,
+});
+
+function Home() {
+  const { user, loading } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && user) navigate({ to: "/app" });
+  }, [loading, user, navigate]);
+
+  return (
+    <div className="min-h-screen bg-background">
+      <header className="border-b border-border/60">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+          <div className="flex items-center gap-2">
+            <UtensilsCrossed className="h-6 w-6 text-primary" />
+            <span className="font-display text-2xl font-bold">Trattoria</span>
+          </div>
+          <Link to="/auth">
+            <Button>Entrar</Button>
+          </Link>
+        </div>
+      </header>
+
+      <section className="mx-auto max-w-6xl px-6 py-20 text-center">
+        <h1 className="font-display text-5xl font-bold leading-tight md:text-6xl">
+          Cozinha de casa, <span className="text-primary">tecnologia</span> de ponta.
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+          O sistema completo para o seu restaurante: comanda digital, pedidos pelo tablet,
+          cozinha em tempo real, controle de estoque e pagamento em segundos.
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Link to="/auth">
+            <Button size="lg" className="shadow-[var(--shadow-warm)]">Começar agora</Button>
+          </Link>
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-6xl grid-cols-1 gap-5 px-6 pb-20 md:grid-cols-2 lg:grid-cols-4">
+        <Feature icon={Tablet} title="Tablet do cliente" desc="Cardápio digital com fotos. O cliente pede sem esperar." />
+        <Feature icon={ChefHat} title="Painel da cozinha" desc="Pedidos chegam em tempo real. Marcou pronto, todos sabem." />
+        <Feature icon={CreditCard} title="Pagamento fácil" desc="QR Code Pix ou cartão na maquininha. Comanda fechada na hora." />
+        <Feature icon={Settings} title="Estoque inteligente" desc="Verifica ingredientes antes de mandar o pedido para a cozinha." />
+      </section>
+
+      <footer className="border-t border-border/60 py-8 text-center text-sm text-muted-foreground">
+        © {new Date().getFullYear()} Trattoria · Sistema de gestão
+      </footer>
+    </div>
+  );
+}
+
+function Feature({ icon: Icon, title, desc }: { icon: typeof ChefHat; title: string; desc: string }) {
+  return (
+    <div className="rounded-xl border border-border/60 bg-card p-6 transition-shadow hover:shadow-[var(--shadow-warm)]">
+      <Icon className="h-8 w-8 text-primary" />
+      <h3 className="mt-4 font-display text-xl font-semibold">{title}</h3>
+      <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+    </div>
+  );
+}
+
+--- src/routes/auth.tsx ---
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/lib/auth-context";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card } from "@/components/ui/card";
+import { toast } from "sonner";
+import { UtensilsCrossed } from "lucide-react";
+
+export const Route = createFileRoute("/auth")({
+  head: () => ({ meta: [{ title: "Entrar — Trattoria" }] }),
+  component: AuthPage,
+});
+
+function AuthPage() {
+  const navigate = useNavigate();
+  const { user, loading } = useAuth();
+  const [mode, setMode] = useState<"login" | "signup">("login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    if (!loading && user) navigate({ to: "/app" });
+  }, [loading, user, navigate]);
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    try {
+      if (mode === "login") {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        toast.success("Bem-vindo!");
+      } else {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: `${window.location.origin}/app`,
+            data: { full_name: name },
+          },
+        });
+        if (error) throw error;
+        toast.success("Conta criada! Você já pode entrar.");
+        setMode("login");
+      }
+    } catch (err) {
+      toast.error((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <Card className="w-full max-w-md p-8">
+        <div className="mb-6 flex items-center gap-2">
+          <UtensilsCrossed className="h-6 w-6 text-primary" />
+          <span className="font-display text-2xl font-bold">Trattoria</span>
+        </div>
+        <h1 className="font-display text-2xl">{mode === "login" ? "Entrar" : "Criar conta"}</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Acesso para a equipe do restaurante
+        </p>
+
+        <form onSubmit={submit} className="mt-6 space-y-4">
+          {mode === "signup" && (
+            <div>
+              <Label htmlFor="name">Nome completo</Label>
+              <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+            </div>
+          )}
+          <div>
+            <Label htmlFor="email">E-mail</Label>
+            <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </div>
+          <div>
+            <Label htmlFor="password">Senha</Label>
+            <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} />
+          </div>
+          <Button type="submit" disabled={busy} className="w-full">
+            {busy ? "Aguarde..." : mode === "login" ? "Entrar" : "Cadastrar"}
+          </Button>
+        </form>
+
+        <button
+          onClick={() => setMode(mode === "login" ? "signup" : "login")}
+          className="mt-4 w-full text-center text-sm text-muted-foreground hover:text-foreground"
+        >
+          {mode === "login" ? "Não tem conta? Cadastre-se" : "Já tem conta? Entrar"}
+        </button>
+
+        {mode === "signup" && (
+          <p className="mt-3 text-xs text-muted-foreground">
+            O primeiro usuário cadastrado vira admin com todos os papéis automaticamente.
+          </p>
+        )}
+      </Card>
+    </div>
+  );
+}
+
+--- src/routes/_authenticated/route.tsx ---
+import { createFileRoute, Outlet, useNavigate, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { useAuth } from "@/lib/auth-context";
+import { Button } from "@/components/ui/button";
+import { UtensilsCrossed, LogOut } from "lucide-react";
+
+export const Route = createFileRoute("/_authenticated")({
+  ssr: false,
+  component: Layout,
+});
+
+function Layout() {
+  const { user, loading, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && !user) navigate({ to: "/auth" });
+  }, [loading, user, navigate]);
+
+  if (loading || !user) {
+    return <div className="flex min-h-screen items-center justify-center text-muted-foreground">Carregando...</div>;
+  }
+
+  return (
+    <div className="min-h-screen bg-background">
+      <header className="sticky top-0 z-30 border-b border-border/60 bg-background/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
+          <Link to="/app" className="flex items-center gap-2">
+            <UtensilsCrossed className="h-5 w-5 text-primary" />
+            <span className="font-display text-xl font-bold">Trattoria</span>
+          </Link>
+          <div className="flex items-center gap-2">
+            <span className="hidden text-sm text-muted-foreground md:inline">{user.email}</span>
+            <Button variant="ghost" size="sm" onClick={() => signOut().then(() => navigate({ to: "/" }))}>
+              <LogOut className="mr-1 h-4 w-4" />Sair
+            </Button>
+          </div>
+        </div>
+      </header>
+      <main className="mx-auto max-w-7xl px-4 py-6">
+        <Outlet />
+      </main>
+    </div>
+  );
+}
+
+--- src/routes/_authenticated/app.tsx ---
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useAuth } from "@/lib/auth-context";
+import { Card } from "@/components/ui/card";
+import { Tablet, ChefHat, CreditCard, Settings, ArrowRight } from "lucide-react";
+
+export const Route = createFileRoute("/_authenticated/app")({
+  head: () => ({ meta: [{ title: "Painel — Trattoria" }] }),
+  component: Hub,
+});
+
+function Hub() {
+  const { hasRole, roles } = useAuth();
+
+  const tiles = [
+    { to: "/tables", title: "Mesas & Comandas", desc: "Abrir comanda, ver mesas ocupadas.", icon: Tablet, show: hasRole("waiter") || hasRole("admin") },
+    { to: "/kitchen", title: "Cozinha", desc: "Pedidos para preparar em tempo real.", icon: ChefHat, show: hasRole("kitchen") || hasRole("admin") },
+    { to: "/cashier", title: "Caixa", desc: "Fechar comandas e receber pagamentos.", icon: CreditCard, show: hasRole("cashier") || hasRole("admin") },
+    { to: "/admin", title: "Administração", desc: "Mesas, cardápio, ingredientes e equipe.", icon: Settings, show: hasRole("admin") },
+  ] as const;
+
+  return (
+    <div>
+      <h1 className="font-display text-3xl">Painel</h1>
+      <p className="mt-1 text-muted-foreground">
+        Seus papéis: <span className="font-medium text-foreground">{roles.length ? roles.join(", ") : "nenhum (peça ao admin)"}</span>
+      </p>
+
+      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+        {tiles.filter(t => t.show).map((t) => (
+          <Link key={t.to} to={t.to}>
+            <Card className="group flex items-center gap-4 p-6 transition-all hover:border-primary hover:shadow-[var(--shadow-warm)]">
+              <div className="rounded-lg bg-primary/10 p-3 text-primary">
+                <t.icon className="h-7 w-7" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-display text-xl">{t.title}</h3>
+                <p className="text-sm text-muted-foreground">{t.desc}</p>
+              </div>
+              <ArrowRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
+            </Card>
+          </Link>
+        ))}
+        {tiles.every(t => !t.show) && (
+          <Card className="p-6 text-center text-muted-foreground">
+            Você ainda não tem papéis atribuídos. Peça a um administrador.
+          </Card>
+        )}
+      </div>
+    </div>
+  );
+}
+
+--- src/routes/_authenticated/tables.tsx ---
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { toast } from "sonner";
+import { Plus, Users } from "lucide-react";
+
+export const Route = createFileRoute("/_authenticated/tables")({
+  head: () => ({ meta: [{ title: "Mesas — Trattoria" }] }),
+  component: TablesPage,
+});
+
+interface RTable { id: string; number: number; seats: number; status: "free" | "occupied" }
+interface Comanda { id: string; table_id: string; status: string; customer_name: string }
+
+function TablesPage() {
+  const navigate = useNavigate();
+  const [tables, setTables] = useState<RTable[]>([]);
+  const [openComandas, setOpenComandas] = useState<Comanda[]>([]);
+  const [busyTable, setBusyTable] = useState<string | null>(null);
+  const [customer, setCustomer] = useState("");
+  const [dialogTable, setDialogTable] = useState<RTable | null>(null);
+
+  async function load() {
+    const [{ data: t }, { data: c }] = await Promise.all([
+      supabase.from("restaurant_tables").select("*").order("number"),
+      supabase.from("comandas").select("*").eq("status", "open"),
+    ]);
+    setTables((t ?? []) as RTable[]);
+    setOpenComandas((c ?? []) as Comanda[]);
+  }
+  useEffect(() => {
+    load();
+    const ch = supabase.channel("tables-page")
+      .on("postgres_changes", { event: "*", schema: "public", table: "comandas" }, load)
+      .on("postgres_changes", { event: "*", schema: "public", table: "restaurant_tables" }, load)
+      .subscribe();
+    return () => { supabase.removeChannel(ch); };
+  }, []);
+
+  async function openComanda(t: RTable) {
+    setBusyTable(t.id);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      const { data, error } = await supabase.from("comandas").insert({
+        table_id: t.id,
+        customer_name: customer || "Cliente",
+        opened_by: user?.id,
+      }).select().single();
+      if (error) throw error;
+      await supabase.from("restaurant_tables").update({ status: "occupied" }).eq("id", t.id);
+      toast.success(`Comanda aberta na mesa ${t.number}`);
+      setDialogTable(null);
+      setCustomer("");
+      navigate({ to: "/comanda/$id", params: { id: data.id } });
+    } catch (err) {
+      toast.error((err as Error).message);
+    } finally {
+      setBusyTable(null);
+    }
+  }
+
+  function goToComanda(c: Comanda) {
+    navigate({ to: "/comanda/$id", params: { id: c.id } });
+  }
+
+  return (
+    <div>
+      <h1 className="font-display text-3xl">Mesas</h1>
+      <p className="text-muted-foreground">Toque numa mesa livre para abrir uma comanda, ou retome uma aberta.</p>
+
+      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        {tables.map((t) => {
+          const comanda = openComandas.find((c) => c.table_id === t.id);
+          const occupied = t.status === "occupied" || !!comanda;
+          return (
+            <Card key={t.id} className={`p-4 text-center transition-all ${occupied ? "border-secondary bg-secondary/5" : "hover:border-primary"}`}>
+              <div className="font-display text-3xl font-bold">{t.number}</div>
+              <div className="mt-1 flex items-center justify-center gap-1 text-xs text-muted-foreground">
+                <Users className="h-3 w-3" />{t.seats}
+              </div>
+              <div className="mt-3">
+                {comanda ? (
+                  <Button size="sm" variant="secondary" className="w-full" onClick={() => goToComanda(comanda)}>
+                    Abrir comanda
+                  </Button>
+                ) : (
+                  <Dialog open={dialogTable?.id === t.id} onOpenChange={(o) => setDialogTable(o ? t : null)}>
+                    <DialogTrigger asChild>
+                      <Button size="sm" className="w-full"><Plus className="mr-1 h-3 w-3" />Nova</Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader><DialogTitle>Abrir mesa {t.number}</DialogTitle></DialogHeader>
+                      <div className="space-y-3">
+                        <Label htmlFor="cust">Nome do cliente (opcional)</Label>
+                        <Input id="cust" value={customer} onChange={(e) => setCustomer(e.target.value)} placeholder="Ex: João" />
+                        <Button onClick={() => openComanda(t)} disabled={busyTable === t.id} className="w-full">
+                          {busyTable === t.id ? "Abrindo..." : "Abrir comanda"}
+                        </Button>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                )}
+              </div>
+            </Card>
+          );
+        })}
+        {tables.length === 0 && (
+          <Card className="col-span-full p-8 text-center text-muted-foreground">
+            Nenhuma mesa cadastrada. Vá em Administração para adicionar.
+          </Card>
+        )}
+      </div>
+    </div>
+  );
+}
+
+--- src/routes/_authenticated/comanda.$id.tsx ---
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useMemo, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { toast } from "sonner";
+import { Plus, Minus, ShoppingCart, Clock, ChefHat, CheckCircle2, ArrowLeft, QrCode, CreditCard } from "lucide-react";
+
+export const Route = createFileRoute("/_authenticated/comanda/$id")({
+  head: () => ({ meta: [{ title: "Comanda — Trattoria" }] }),
+  component: ComandaPage,
+});
+
+interface MenuItem { id: string; name: string; description: string; category: string; price: number; image_url: string | null; available: boolean }
+interface Comanda { id: string; table_id: string; customer_name: string; status: string }
+interface RTable { id: string; number: number }
+interface Order { id: string; status: string; created_at: string; ready_at: string | null }
+interface OrderItem { id: string; order_id: string; menu_item_id: string; quantity: number; unit_price: number; notes: string }
+
+function ComandaPage() {
+  const { id } = Route.useParams();
+  const navigate = useNavigate();
+  const [comanda, setComanda] = useState<Comanda | null>(null);
+  const [table, setTable] = useState<RTable | null>(null);
+  const [menu, setMenu] = useState<MenuItem[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
+  const [cart, setCart] = useState<Record<string, number>>({});
+  const [selectedCat, setSelectedCat] = useState<string>("all");
+  const [view, setView] = useState<"menu" | "orders" | "pay">("menu");
+  const [sending, setSending] = useState(false);
+  const [payMethod, setPayMethod] = useState<"pix" | "card" | null>(null);
+
+  async function load() {
+    const { data: c } = await supabase.from("comandas").select("*").eq("id", id).maybeSingle();
+    if (!c) return;
+    setComanda(c as Comanda);
+    const [{ data: t }, { data: m }, { data: o }] = await Promise.all([
+      supabase.from("restaurant_tables").select("*").eq("id", c.table_id).maybeSingle(),
+      supabase.from("menu_items").select("*").eq("available", true).order("category").order("name"),
+      supabase.from("orders").select("*").eq("comanda_id", id).order("created_at", { ascending: false }),
+    ]);
+    setTable(t as RTable);
+    setMenu((m ?? []) as MenuItem[]);
+    const ordersList = (o ?? []) as Order[];
+    setOrders(ordersList);
+    if (ordersList.length) {
+      const { data: oi } = await supabase.from("order_items").select("*").in("order_id", ordersList.map((x) => x.id));
+      setOrderItems((oi ?? []) as OrderItem[]);
+    } else setOrderItems([]);
+  }
+  useEffect(() => {
+    load();
+    const ch = supabase.channel(`comanda-${id}`)
+      .on("postgres_changes", { event: "*", schema: "public", table: "orders", filter: `comanda_id=eq.${id}` }, load)
+      .on("postgres_changes", { event: "*", schema: "public", table: "order_items" }, load)
+      .subscribe();
+    return () => { supabase.removeChannel(ch); };
+  }, [id]);
+
+  const categories = useMemo(() => Array.from(new Set(menu.map((m) => m.category))), [menu]);
+  const filtered = selectedCat === "all" ? menu : menu.filter((m) => m.category === selectedCat);
+
+  const cartCount = Object.values(cart).reduce((a, b) => a + b, 0);
+  const cartTotal = Object.entries(cart).reduce((sum, [mid, q]) => {
+    const it = menu.find((m) => m.id === mid);
+    return sum + (it ? it.price * q : 0);
+  }, 0);
+
+  const comandaTotal = orderItems.reduce((s, oi) => s + Number(oi.unit_price) * oi.quantity, 0);
+
+  function add(mid: string) { setCart((c) => ({ ...c, [mid]: (c[mid] ?? 0) + 1 })); }
+  function dec(mid: string) {
+    setCart((c) => {
+      const n = (c[mid] ?? 0) - 1;
+      const { [mid]: _, ...rest } = c;
+      return n <= 0 ? rest : { ...c, [mid]: n };
+    });
+  }
+
+  async function sendOrder() {
+    if (!cartCount) return;
+    setSending(true);
+    try {
+      const items = Object.entries(cart).map(([menu_item_id, quantity]) => ({ menu_item_id, quantity }));
+      const { data, error } = await supabase.rpc("place_order", { _comanda_id: id, _items: items, _notes: "" });
+      if (error) throw error;
+      const res = data as { success: boolean; missing?: string[] };
+      if (!res.success) {
+        toast.error("Ingredientes em falta", { description: (res.missing ?? []).join("; ") });
+        return;
+      }
+      toast.success("Pedido enviado para a cozinha!");
+      setCart({});
+      setView("orders");
+      load();
+    } catch (err) {
+      toast.error((err as Error).message);
+    } finally {
+      setSending(false);
+    }
+  }
+
+  async function pay(method: "pix" | "card") {
+    setPayMethod(method);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      const { error } = await supabase.from("payments").insert({
+        comanda_id: id,
+        method,
+        amount: comandaTotal,
+        status: "paid",
+        paid_at: new Date().toISOString(),
+        cashier_id: user?.id,
+      });
+      if (error) throw error;
+      await supabase.from("comandas").update({ status: "closed", closed_at: new Date().toISOString() }).eq("id", id);
+      if (comanda) await supabase.from("restaurant_tables").update({ status: "free" }).eq("id", comanda.table_id);
+      toast.success("Pagamento registrado! Comanda fechada.");
+      navigate({ to: "/tables" });
+    } catch (err) {
+      toast.error((err as Error).message);
+      setPayMethod(null);
+    }
+  }
+
+  if (!comanda) return <div className="text-muted-foreground">Carregando comanda...</div>;
+
+  return (
+    <div>
+      <div className="mb-4 flex items-center justify-between">
+        <div>
+          <button onClick={() => navigate({ to: "/tables" })} className="mb-1 inline-flex items-center text-sm text-muted-foreground hover:text-foreground">
+            <ArrowLeft className="mr-1 h-4 w-4" />Mesas
+          </button>
+          <h1 className="font-display text-3xl">
+            Mesa {table?.number} <span className="text-muted-foreground">· {comanda.customer_name}</span>
+          </h1>
+        </div>
+        <div className="text-right">
+          <div className="text-xs text-muted-foreground">Total da comanda</div>
+          <div className="font-display text-2xl font-bold text-primary">R$ {comandaTotal.toFixed(2)}</div>
+        </div>
+      </div>
+
+      <div className="mb-5 flex gap-2 border-b border-border">
+        {[{ k: "menu", l: "Cardápio" }, { k: "orders", l: `Pedidos (${orders.length})` }, { k: "pay", l: "Pagar" }].map((tab) => (
+          <button
+            key={tab.k}
+            onClick={() => setView(tab.k as typeof view)}
+            className={`px-4 py-2 text-sm font-medium ${view === tab.k ? "border-b-2 border-primary text-primary" : "text-muted-foreground"}`}
+          >
+            {tab.l}
+          </button>
+        ))}
+      </div>
+
+      {view === "menu" && (
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_360px]">
+          <div>
+            <div className="mb-4 flex flex-wrap gap-2">
+              <Button size="sm" variant={selectedCat === "all" ? "default" : "outline"} onClick={() => setSelectedCat("all")}>Todos</Button>
+              {categories.map((c) => (
+                <Button key={c} size="sm" variant={selectedCat === c ? "default" : "outline"} onClick={() => setSelectedCat(c)}>{c}</Button>
+              ))}
+            </div>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {filtered.map((m) => (
+                <Card key={m.id} className="flex gap-3 overflow-hidden p-3">
+                  {m.image_url ? (
+                    <img src={m.image_url} alt={m.name} className="h-24 w-24 rounded-md object-cover" />
+                  ) : (
+                    <div className="flex h-24 w-24 items-center justify-center rounded-md bg-muted text-3xl">🍝</div>
+                  )}
+                  <div className="flex flex-1 flex-col">
+                    <div className="font-semibold">{m.name}</div>
+                    <div className="line-clamp-2 text-xs text-muted-foreground">{m.description}</div>
+                    <div className="mt-auto flex items-center justify-between">
+                      <span className="font-display text-lg font-bold text-primary">R$ {Number(m.price).toFixed(2)}</span>
+                      {cart[m.id] ? (
+                        <div className="flex items-center gap-1">
+                          <Button size="icon" variant="outline" className="h-7 w-7" onClick={() => dec(m.id)}><Minus className="h-3 w-3" /></Button>
+                          <span className="w-6 text-center font-medium">{cart[m.id]}</span>
+                          <Button size="icon" className="h-7 w-7" onClick={() => add(m.id)}><Plus className="h-3 w-3" /></Button>
+                        </div>
+                      ) : (
+                        <Button size="sm" onClick={() => add(m.id)}><Plus className="mr-1 h-3 w-3" />Adicionar</Button>
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              ))}
+              {filtered.length === 0 && (
+                <Card className="col-span-full p-8 text-center text-muted-foreground">Nenhum prato cadastrado nessa categoria.</Card>
+              )}
+            </div>
+          </div>
+
+          <Card className="sticky top-20 h-fit p-4">
+            <div className="flex items-center gap-2 border-b border-border pb-3">
+              <ShoppingCart className="h-5 w-5 text-primary" />
+              <span className="font-semibold">Pedido em montagem</span>
+              <Badge variant="secondary" className="ml-auto">{cartCount}</Badge>
+            </div>
+            <div className="mt-3 max-h-64 space-y-2 overflow-y-auto">
+              {Object.entries(cart).map(([mid, q]) => {
+                const it = menu.find((m) => m.id === mid);
+                if (!it) return null;
+                return (
+                  <div key={mid} className="flex items-center justify-between text-sm">
+                    <span className="flex-1">{q}× {it.name}</span>
+                    <span className="text-muted-foreground">R$ {(Number(it.price) * q).toFixed(2)}</span>
+                  </div>
+                );
+              })}
+              {cartCount === 0 && <p className="py-6 text-center text-sm text-muted-foreground">Toque em "Adicionar" nos pratos do cardápio.</p>}
+            </div>
+            <div className="mt-3 flex justify-between border-t border-border pt-3 font-semibold">
+              <span>Total</span><span>R$ {cartTotal.toFixed(2)}</span>
+            </div>
+            <Button className="mt-3 w-full" disabled={!cartCount || sending} onClick={sendOrder}>
+              {sending ? "Enviando..." : "Enviar para a cozinha"}
+            </Button>
+          </Card>
+        </div>
+      )}
+
+      {view === "orders" && (
+        <div className="space-y-3">
+          {orders.length === 0 && <Card className="p-8 text-center text-muted-foreground">Nenhum pedido ainda.</Card>}
+          {orders.map((o) => {
+            const items = orderItems.filter((oi) => oi.order_id === o.id);
+            return (
+              <Card key={o.id} className="p-4">
+                <div className="mb-2 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <StatusBadge status={o.status} />
+                    <span className="text-xs text-muted-foreground">{new Date(o.created_at).toLocaleTimeString("pt-BR")}</span>
+                  </div>
+                  <span className="font-semibold">R$ {items.reduce((s, i) => s + Number(i.unit_price) * i.quantity, 0).toFixed(2)}</span>
+                </div>
+                <ul className="space-y-1 text-sm">
+                  {items.map((oi) => {
+                    const mi = menu.find((m) => m.id === oi.menu_item_id);
+                    return <li key={oi.id}>{oi.quantity}× {mi?.name ?? "Item"}</li>;
+                  })}
+                </ul>
+              </Card>
+            );
+          })}
+        </div>
+      )}
+
+      {view === "pay" && (
+        <div className="mx-auto max-w-md">
+          <Card className="p-6">
+            <h2 className="font-display text-xl">Pagamento</h2>
+            <div className="mt-3 flex items-baseline justify-between border-y border-border py-4">
+              <span className="text-muted-foreground">Total</span>
+              <span className="font-display text-3xl font-bold text-primary">R$ {comandaTotal.toFixed(2)}</span>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <Button variant="outline" size="lg" className="h-24 flex-col" disabled={payMethod !== null || comandaTotal <= 0} onClick={() => pay("pix")}>
+                <QrCode className="mb-1 h-7 w-7" />Pix (QR Code)
+              </Button>
+              <Button variant="outline" size="lg" className="h-24 flex-col" disabled={payMethod !== null || comandaTotal <= 0} onClick={() => pay("card")}>
+                <CreditCard className="mb-1 h-7 w-7" />Cartão (Maquininha)
+              </Button>
+            </div>
+            {payMethod === "pix" && (
+              <div className="mt-4 rounded-md bg-muted p-4 text-center">
+                <div className="mx-auto flex h-44 w-44 items-center justify-center rounded-md bg-foreground/90 text-background">
+                  <QrCode className="h-32 w-32" />
+                </div>
+                <p className="mt-2 text-xs text-muted-foreground">Cliente lê o QR Code para pagar via Pix</p>
+              </div>
+            )}
+            {payMethod === "card" && (
+              <div className="mt-4 rounded-md bg-muted p-4 text-center text-sm">
+                Solicite o uso da <strong>maquininha de cartão</strong> com o cliente.
+              </div>
+            )}
+          </Card>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function StatusBadge({ status }: { status: string }) {
+  const map: Record<string, { l: string; v: "default" | "secondary" | "outline" | "destructive"; icon: typeof Clock }> = {
+    pending: { l: "Pendente", v: "outline", icon: Clock },
+    preparing: { l: "Preparando", v: "secondary", icon: ChefHat },
+    ready: { l: "Pronto", v: "default", icon: CheckCircle2 },
+    delivered: { l: "Entregue", v: "outline", icon: CheckCircle2 },
+    cancelled: { l: "Cancelado", v: "destructive", icon: Clock },
+  };
+  const s = map[status] ?? map.pending;
+  const Icon = s.icon;
+  return <Badge variant={s.v}><Icon className="mr-1 h-3 w-3" />{s.l}</Badge>;
+}
+
+--- src/routes/_authenticated/kitchen.tsx ---
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { toast } from "sonner";
+import { ChefHat, Clock, CheckCircle2, Bell } from "lucide-react";
+
+export const Route = createFileRoute("/_authenticated/kitchen")({
+  head: () => ({ meta: [{ title: "Cozinha — Trattoria" }] }),
+  component: KitchenPage,
+});
+
+interface Order { id: string; comanda_id: string; status: string; created_at: string; notes: string }
+interface OrderItem { id: string; order_id: string; menu_item_id: string; quantity: number; notes: string }
+interface MenuItem { id: string; name: string }
+interface Comanda { id: string; table_id: string; customer_name: string }
+interface RTable { id: string; number: number }
+
+function KitchenPage() {
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [items, setItems] = useState<OrderItem[]>([]);
+  const [menu, setMenu] = useState<MenuItem[]>([]);
+  const [comandas, setComandas] = useState<Comanda[]>([]);
+  const [tables, setTables] = useState<RTable[]>([]);
+
+  async function load() {
+    const { data: o } = await supabase.from("orders").select("*").in("status", ["pending", "preparing", "ready"]).order("created_at");
+    const list = (o ?? []) as Order[];
+    setOrders(list);
+    if (list.length) {
+      const { data: oi } = await supabase.from("order_items").select("*").in("order_id", list.map((x) => x.id));
+      setItems((oi ?? []) as OrderItem[]);
+      const { data: cs } = await supabase.from("comandas").select("*").in("id", list.map((x) => x.comanda_id));
+      const comList = (cs ?? []) as Comanda[];
+      setComandas(comList);
+      const { data: ts } = await supabase.from("restaurant_tables").select("*").in("id", comList.map((c) => c.table_id));
+      setTables((ts ?? []) as RTable[]);
+    } else { setItems([]); setComandas([]); setTables([]); }
+    const { data: m } = await supabase.from("menu_items").select("id,name");
+    setMenu((m ?? []) as MenuItem[]);
+  }
+  useEffect(() => {
+    load();
+    const ch = supabase.channel("kitchen")
+      .on("postgres_changes", { event: "*", schema: "public", table: "orders" }, (payload) => {
+        if (payload.eventType === "INSERT") toast.info("Novo pedido na cozinha!");
+        load();
+      })
+      .subscribe();
+    return () => { supabase.removeChannel(ch); };
+  }, []);
+
+  async function updateStatus(o: Order, status: "preparing" | "ready" | "delivered") {
+    const patch: { status: typeof status; ready_at?: string; delivered_at?: string } = { status };
+    if (status === "ready") patch.ready_at = new Date().toISOString();
+    if (status === "delivered") patch.delivered_at = new Date().toISOString();
+    const { error } = await supabase.from("orders").update(patch).eq("id", o.id);
+    if (error) toast.error(error.message);
+  }
+
+  const pending = orders.filter((o) => o.status === "pending");
+  const preparing = orders.filter((o) => o.status === "preparing");
+  const ready = orders.filter((o) => o.status === "ready");
+
+  function Col({ title, icon: Icon, list, color, action }: { title: string; icon: typeof Clock; list: Order[]; color: string; action: (o: Order) => React.ReactNode }) {
+    return (
+      <div className="flex-1 min-w-[280px]">
+        <div className={`mb-3 flex items-center gap-2 rounded-md ${color} px-3 py-2 font-semibold`}>
+          <Icon className="h-5 w-5" />{title}
+          <Badge variant="secondary" className="ml-auto">{list.length}</Badge>
+        </div>
+        <div className="space-y-3">
+          {list.map((o) => {
+            const its = items.filter((i) => i.order_id === o.id);
+            const com = comandas.find((c) => c.id === o.comanda_id);
+            const tbl = tables.find((t) => t.id === com?.table_id);
+            const mins = Math.floor((Date.now() - new Date(o.created_at).getTime()) / 60000);
+            return (
+              <Card key={o.id} className="p-3">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="font-display text-xl font-bold">Mesa {tbl?.number ?? "?"}</span>
+                  <span className="text-xs text-muted-foreground">{mins}min atrás</span>
+                </div>
+                <div className="mt-1 text-xs text-muted-foreground">{com?.customer_name}</div>
+                <ul className="mt-3 space-y-1 text-sm">
+                  {its.map((it) => {
+                    const mi = menu.find((m) => m.id === it.menu_item_id);
+                    return (
+                      <li key={it.id} className="flex justify-between">
+                        <span><strong>{it.quantity}×</strong> {mi?.name}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                {o.notes && <p className="mt-2 rounded bg-muted p-2 text-xs italic">{o.notes}</p>}
+                <div className="mt-3">{action(o)}</div>
+              </Card>
+            );
+          })}
+          {list.length === 0 && <p className="py-8 text-center text-sm text-muted-foreground">Vazio</p>}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <h1 className="font-display text-3xl">Cozinha</h1>
+      <p className="text-muted-foreground">Pedidos chegando em tempo real.</p>
+      <div className="mt-6 flex flex-wrap gap-4">
+        <Col title="Pendente" icon={Clock} list={pending} color="bg-warning/15 text-warning-foreground"
+          action={(o) => <Button className="w-full" onClick={() => updateStatus(o, "preparing")}><ChefHat className="mr-1 h-4 w-4" />Iniciar preparo</Button>} />
+        <Col title="Preparando" icon={ChefHat} list={preparing} color="bg-secondary/15 text-secondary"
+          action={(o) => <Button className="w-full bg-success text-success-foreground hover:opacity-90" onClick={() => updateStatus(o, "ready")}><Bell className="mr-1 h-4 w-4" />Marcar pronto</Button>} />
+        <Col title="Pronto · entregar" icon={CheckCircle2} list={ready} color="bg-success/15 text-success"
+          action={(o) => <Button variant="outline" className="w-full" onClick={() => updateStatus(o, "delivered")}>Entregue</Button>} />
+      </div>
+    </div>
+  );
+}
+
+--- src/routes/_authenticated/cashier.tsx ---
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { CreditCard, ArrowRight } from "lucide-react";
+
+export const Route = createFileRoute("/_authenticated/cashier")({
+  head: () => ({ meta: [{ title: "Caixa — Trattoria" }] }),
+  component: CashierPage,
+});
+
+interface Comanda { id: string; table_id: string; customer_name: string; opened_at: string }
+interface RTable { id: string; number: number }
+interface OrderItem { order_id: string; unit_price: number; quantity: number; orders?: { comanda_id: string } }
+
+function CashierPage() {
+  const navigate = useNavigate();
+  const [comandas, setComandas] = useState<Comanda[]>([]);
+  const [tables, setTables] = useState<RTable[]>([]);
+  const [totals, setTotals] = useState<Record<string, number>>({});
+
+  async function load() {
+    const { data: c } = await supabase.from("comandas").select("*").eq("status", "open").order("opened_at");
+    const list = (c ?? []) as Comanda[];
+    setComandas(list);
+    if (list.length) {
+      const { data: ts } = await supabase.from("restaurant_tables").select("*").in("id", list.map((x) => x.table_id));
+      setTables((ts ?? []) as RTable[]);
+      const { data: oi } = await supabase
+        .from("order_items")
+        .select("unit_price,quantity,orders!inner(comanda_id)")
+        .in("orders.comanda_id", list.map((x) => x.id));
+      const t: Record<string, number> = {};
+      ((oi ?? []) as unknown as OrderItem[]).forEach((row) => {
+        const cid = row.orders?.comanda_id;
+        if (!cid) return;
+        t[cid] = (t[cid] ?? 0) + Number(row.unit_price) * row.quantity;
+      });
+      setTotals(t);
+    } else { setTables([]); setTotals({}); }
+  }
+  useEffect(() => {
+    load();
+    const ch = supabase.channel("cashier")
+      .on("postgres_changes", { event: "*", schema: "public", table: "comandas" }, load)
+      .on("postgres_changes", { event: "*", schema: "public", table: "order_items" }, load)
+      .subscribe();
+    return () => { supabase.removeChannel(ch); };
+  }, []);
+
+  return (
+    <div>
+      <h1 className="font-display text-3xl">Caixa</h1>
+      <p className="text-muted-foreground">Comandas abertas aguardando pagamento.</p>
+
+      <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+        {comandas.map((c) => {
+          const t = tables.find((x) => x.id === c.table_id);
+          const total = totals[c.id] ?? 0;
+          const mins = Math.floor((Date.now() - new Date(c.opened_at).getTime()) / 60000);
+          return (
+            <Card key={c.id} className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="font-display text-2xl font-bold">Mesa {t?.number}</div>
+                  <div className="text-sm text-muted-foreground">{c.customer_name}</div>
+                </div>
+                <Badge variant="secondary">{mins}min</Badge>
+              </div>
+              <div className="my-3 border-y border-border py-3">
+                <div className="text-xs text-muted-foreground">Total a receber</div>
+                <div className="font-display text-2xl font-bold text-primary">R$ {total.toFixed(2)}</div>
+              </div>
+              <Button className="w-full" onClick={() => navigate({ to: "/comanda/$id", params: { id: c.id } })}>
+                <CreditCard className="mr-1 h-4 w-4" />Receber pagamento <ArrowRight className="ml-1 h-4 w-4" />
+              </Button>
+            </Card>
+          );
+        })}
+        {comandas.length === 0 && <Card className="col-span-full p-10 text-center text-muted-foreground">Nenhuma comanda aberta no momento.</Card>}
+      </div>
+    </div>
+  );
+}
+
+--- src/routes/_authenticated/admin.tsx ---
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { toast } from "sonner";
+import { Trash2 } from "lucide-react";
+
+export const Route = createFileRoute("/_authenticated/admin")({
+  head: () => ({ meta: [{ title: "Administração — Trattoria" }] }),
+  component: AdminPage,
+});
+
+interface RTable { id: string; number: number; seats: number }
+interface Ingredient { id: string; name: string; unit: string; stock: number; min_stock: number }
+interface MenuItem { id: string; name: string; description: string; category: string; price: number; image_url: string | null; available: boolean }
+interface Recipe { id: string; menu_item_id: string; ingredient_id: string; quantity: number }
+
+function AdminPage() {
+  return (
+    <div>
+      <h1 className="font-display text-3xl">Administração</h1>
+      <p className="text-muted-foreground">Gerencie mesas, ingredientes, cardápio e receitas.</p>
+
+      <Tabs defaultValue="tables" className="mt-6">
+        <TabsList>
+          <TabsTrigger value="tables">Mesas</TabsTrigger>
+          <TabsTrigger value="ingredients">Ingredientes</TabsTrigger>
+          <TabsTrigger value="menu">Cardápio</TabsTrigger>
+        </TabsList>
+        <TabsContent value="tables"><TablesAdmin /></TabsContent>
+        <TabsContent value="ingredients"><IngredientsAdmin /></TabsContent>
+        <TabsContent value="menu"><MenuAdmin /></TabsContent>
+      </Tabs>
+    </div>
+  );
+}
+
+function TablesAdmin() {
+  const [list, setList] = useState<RTable[]>([]);
+  const [num, setNum] = useState(""); const [seats, setSeats] = useState("4");
+  async function load() {
+    const { data } = await supabase.from("restaurant_tables").select("*").order("number");
+    setList((data ?? []) as RTable[]);
+  }
+  useEffect(() => { load(); }, []);
+  async function add() {
+    if (!num) return;
+    const { error } = await supabase.from("restaurant_tables").insert({ number: Number(num), seats: Number(seats) });
+    if (error) return toast.error(error.message);
+    toast.success("Mesa adicionada"); setNum(""); load();
+  }
+  async function del(id: string) {
+    const { error } = await supabase.from("restaurant_tables").delete().eq("id", id);
+    if (error) return toast.error(error.message);
+    load();
+  }
+  return (
+    <Card className="p-4">
+      <div className="flex flex-wrap gap-2 border-b border-border pb-4">
+        <div><Label>Número</Label><Input type="number" value={num} onChange={(e) => setNum(e.target.value)} className="w-24" /></div>
+        <div><Label>Lugares</Label><Input type="number" value={seats} onChange={(e) => setSeats(e.target.value)} className="w-24" /></div>
+        <Button onClick={add} className="self-end">Adicionar mesa</Button>
+      </div>
+      <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-6">
+        {list.map((t) => (
+          <div key={t.id} className="flex items-center justify-between rounded border border-border p-2">
+            <span>Mesa {t.number} · {t.seats}p</span>
+            <Button size="icon" variant="ghost" onClick={() => del(t.id)}><Trash2 className="h-4 w-4" /></Button>
+          </div>
+        ))}
+      </div>
+    </Card>
+  );
+}
+
+function IngredientsAdmin() {
+  const [list, setList] = useState<Ingredient[]>([]);
+  const [form, setForm] = useState({ name: "", unit: "un", stock: "0", min_stock: "0" });
+  async function load() {
+    const { data } = await supabase.from("ingredients").select("*").order("name");
+    setList((data ?? []) as Ingredient[]);
+  }
+  useEffect(() => { load(); }, []);
+  async function add() {
+    if (!form.name) return;
+    const { error } = await supabase.from("ingredients").insert({ name: form.name, unit: form.unit, stock: Number(form.stock), min_stock: Number(form.min_stock) });
+    if (error) return toast.error(error.message);
+    toast.success("Ingrediente adicionado"); setForm({ name: "", unit: "un", stock: "0", min_stock: "0" }); load();
+  }
+  async function updateStock(id: string, stock: number) {
+    await supabase.from("ingredients").update({ stock }).eq("id", id); load();
+  }
+  async function del(id: string) {
+    await supabase.from("ingredients").delete().eq("id", id); load();
+  }
+  return (
+    <Card className="p-4">
+      <div className="flex flex-wrap gap-2 border-b border-border pb-4">
+        <div><Label>Nome</Label><Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
+        <div><Label>Unidade</Label><Input value={form.unit} onChange={(e) => setForm({ ...form, unit: e.target.value })} className="w-20" /></div>
+        <div><Label>Estoque</Label><Input type="number" value={form.stock} onChange={(e) => setForm({ ...form, stock: e.target.value })} className="w-24" /></div>
+        <div><Label>Mínimo</Label><Input type="number" value={form.min_stock} onChange={(e) => setForm({ ...form, min_stock: e.target.value })} className="w-24" /></div>
+        <Button onClick={add} className="self-end">Adicionar</Button>
+      </div>
+      <div className="mt-4 space-y-2">
+        {list.map((i) => (
+          <div key={i.id} className={`flex items-center gap-2 rounded border p-2 ${i.stock < i.min_stock ? "border-destructive bg-destructive/5" : "border-border"}`}>
+            <span className="flex-1 font-medium">{i.name}</span>
+            <span className="text-sm text-muted-foreground">{i.unit}</span>
+            <Input type="number" defaultValue={i.stock} onBlur={(e) => updateStock(i.id, Number(e.target.value))} className="w-24" />
+            <Button size="icon" variant="ghost" onClick={() => del(i.id)}><Trash2 className="h-4 w-4" /></Button>
+          </div>
+        ))}
+      </div>
+    </Card>
+  );
+}
+
+function MenuAdmin() {
+  const [list, setList] = useState<MenuItem[]>([]);
+  const [ings, setIngs] = useState<Ingredient[]>([]);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [form, setForm] = useState({ name: "", description: "", category: "Pratos", price: "", image_url: "" });
+  const [recipeFor, setRecipeFor] = useState<string | null>(null);
+  const [recipeIng, setRecipeIng] = useState(""); const [recipeQty, setRecipeQty] = useState("1");
+
+  async function load() {
+    const [{ data: m }, { data: i }, { data: r }] = await Promise.all([
+      supabase.from("menu_items").select("*").order("category").order("name"),
+      supabase.from("ingredients").select("*").order("name"),
+      supabase.from("menu_item_ingredients").select("*"),
+    ]);
+    setList((m ?? []) as MenuItem[]); setIngs((i ?? []) as Ingredient[]); setRecipes((r ?? []) as Recipe[]);
+  }
+  useEffect(() => { load(); }, []);
+
+  async function add() {
+    if (!form.name || !form.price) return;
+    const { error } = await supabase.from("menu_items").insert({
+      name: form.name, description: form.description, category: form.category, price: Number(form.price),
+      image_url: form.image_url || null,
+    });
+    if (error) return toast.error(error.message);
+    toast.success("Prato criado"); setForm({ name: "", description: "", category: "Pratos", price: "", image_url: "" }); load();
+  }
+  async function toggle(it: MenuItem) {
+    await supabase.from("menu_items").update({ available: !it.available }).eq("id", it.id); load();
+  }
+  async function del(id: string) {
+    await supabase.from("menu_items").delete().eq("id", id); load();
+  }
+  async function addRecipe() {
+    if (!recipeFor || !recipeIng) return;
+    const { error } = await supabase.from("menu_item_ingredients").insert({
+      menu_item_id: recipeFor, ingredient_id: recipeIng, quantity: Number(recipeQty),
+    });
+    if (error) return toast.error(error.message);
+    setRecipeIng(""); setRecipeQty("1"); load();
+  }
+  async function delRecipe(id: string) {
+    await supabase.from("menu_item_ingredients").delete().eq("id", id); load();
+  }
+
+  return (
+    <Card className="p-4">
+      <div className="grid gap-2 border-b border-border pb-4 md:grid-cols-2">
+        <div><Label>Nome</Label><Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
+        <div><Label>Categoria</Label><Input value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} /></div>
+        <div className="md:col-span-2"><Label>Descrição</Label><Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={2} /></div>
+        <div><Label>Preço (R$)</Label><Input type="number" step="0.01" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} /></div>
+        <div><Label>URL da imagem (opcional)</Label><Input value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} /></div>
+        <Button onClick={add} className="md:col-span-2">Adicionar prato</Button>
+      </div>
+
+      <div className="mt-4 space-y-3">
+        {list.map((it) => {
+          const itsRecipe = recipes.filter((r) => r.menu_item_id === it.id);
+          return (
+            <div key={it.id} className="rounded border border-border p-3">
+              <div className="flex items-center gap-2">
+                <div className="flex-1">
+                  <div className="font-semibold">{it.name} <span className="text-xs text-muted-foreground">· {it.category} · R$ {Number(it.price).toFixed(2)}</span></div>
+                  <div className="text-xs text-muted-foreground">{it.description}</div>
+                </div>
+                <Button size="sm" variant={it.available ? "default" : "outline"} onClick={() => toggle(it)}>{it.available ? "Disponível" : "Indisponível"}</Button>
+                <Button size="sm" variant="ghost" onClick={() => setRecipeFor(recipeFor === it.id ? null : it.id)}>Receita ({itsRecipe.length})</Button>
+                <Button size="icon" variant="ghost" onClick={() => del(it.id)}><Trash2 className="h-4 w-4" /></Button>
+              </div>
+              {recipeFor === it.id && (
+                <div className="mt-3 rounded bg-muted p-3">
+                  <div className="space-y-1">
+                    {itsRecipe.map((r) => {
+                      const ing = ings.find((x) => x.id === r.ingredient_id);
+                      return (
+                        <div key={r.id} className="flex items-center justify-between text-sm">
+                          <span>{r.quantity} {ing?.unit} de {ing?.name}</span>
+                          <Button size="icon" variant="ghost" onClick={() => delRecipe(r.id)}><Trash2 className="h-3 w-3" /></Button>
+                        </div>
+                      );
+                    })}
+                    {itsRecipe.length === 0 && <p className="text-xs text-muted-foreground">Sem ingredientes. Adicione para controlar estoque.</p>}
+                  </div>
+                  <div className="mt-2 flex gap-2">
+                    <select value={recipeIng} onChange={(e) => setRecipeIng(e.target.value)} className="flex-1 rounded border border-border bg-background px-2 py-1 text-sm">
+                      <option value="">Selecione ingrediente</option>
+                      {ings.map((i) => <option key={i.id} value={i.id}>{i.name} ({i.unit})</option>)}
+                    </select>
+                    <Input type="number" step="0.01" value={recipeQty} onChange={(e) => setRecipeQty(e.target.value)} className="w-24" />
+                    <Button size="sm" onClick={addRecipe}>Adicionar</Button>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </Card>
+  );
+}
+
+--- src/lib/auth-context.tsx ---
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import type { Session, User } from "@supabase/supabase-js";
+import { supabase } from "@/integrations/supabase/client";
+
+export type AppRole = "admin" | "waiter" | "kitchen" | "cashier";
+
+interface AuthCtx {
+  user: User | null;
+  session: Session | null;
+  roles: AppRole[];
+  loading: boolean;
+  signOut: () => Promise<void>;
+  hasRole: (r: AppRole) => boolean;
+}
+
+const Ctx = createContext<AuthCtx | null>(null);
+
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [session, setSession] = useState<Session | null>(null);
+  const [roles, setRoles] = useState<AppRole[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, s) => {
+      setSession(s);
+      if (s?.user) {
+        setTimeout(() => loadRoles(s.user.id), 0);
+      } else {
+        setRoles([]);
+      }
+    });
+
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session);
+      if (data.session?.user) loadRoles(data.session.user.id);
+      setLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  async function loadRoles(uid: string) {
+    const { data } = await supabase.from("user_roles").select("role").eq("user_id", uid);
+    setRoles((data ?? []).map((r) => r.role as AppRole));
+  }
+
+  return (
+    <Ctx.Provider
+      value={{
+        user: session?.user ?? null,
+        session,
+        roles,
+        loading,
+        signOut: async () => { await supabase.auth.signOut(); },
+        hasRole: (r) => roles.includes(r),
+      }}
+    >
+      {children}
+    </Ctx.Provider>
+  );
+}
+
+export function useAuth() {
+  const ctx = useContext(Ctx);
+  if (!ctx) throw new Error("useAuth must be inside AuthProvider");
+  return ctx;
+}
+
+--- src/lib/utils.ts ---
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+--- src/integrations/supabase/client.ts ---
+// This file is automatically generated. Do not edit it directly.
+import { createClient } from '@supabase/supabase-js';
+import type { Database } from './types';
+
+function createSupabaseClient() {
+  // Use import.meta.env for client-side (Vite build-time replacement)
+  // Fall back to process.env for SSR (server-side rendering)
+  const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
+  const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_PUBLISHABLE_KEY;
+
+  if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+    const missing = [
+      ...(!SUPABASE_URL ? ['SUPABASE_URL'] : []),
+      ...(!SUPABASE_PUBLISHABLE_KEY ? ['SUPABASE_PUBLISHABLE_KEY'] : []),
+    ];
+    const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
+    console.error(`[Supabase] ${message}`);
+    throw new Error(message);
+  }
+
+  return createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+    auth: {
+      storage: typeof window !== 'undefined' ? localStorage : undefined,
+      persistSession: true,
+      autoRefreshToken: true,
+    }
+  });
+}
+
+let _supabase: ReturnType<typeof createSupabaseClient> | undefined;
+
+// Import the supabase client like this:
+// import { supabase } from "@/integrations/supabase/client";
+export const supabase = new Proxy({} as ReturnType<typeof createSupabaseClient>, {
+  get(_, prop, receiver) {
+    if (!_supabase) _supabase = createSupabaseClient();
+    return Reflect.get(_supabase, prop, receiver);
+  },
+});
+
+
+--- src/integrations/supabase/client.server.ts ---
+// This file is automatically generated. Do not edit it directly.
+// Server-side Supabase client with service role key - bypasses RLS.
+// Use this for admin operations in server functions and server routes only.
+// For user-authenticated queries (with RLS), use the auth middleware instead.
+import { createClient } from '@supabase/supabase-js';
+import type { Database } from './types';
+
+function createSupabaseAdminClient() {
+  const SUPABASE_URL = process.env.SUPABASE_URL;
+  const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+    const missing = [
+      ...(!SUPABASE_URL ? ['SUPABASE_URL'] : []),
+      ...(!SUPABASE_SERVICE_ROLE_KEY ? ['SUPABASE_SERVICE_ROLE_KEY'] : []),
+    ];
+    const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
+    console.error(`[Supabase] ${message}`);
+    throw new Error(message);
+  }
+
+  return createClient<Database>(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+    auth: {
+      storage: undefined,
+      persistSession: false,
+      autoRefreshToken: false,
+    }
+  });
+}
+
+let _supabaseAdmin: ReturnType<typeof createSupabaseAdminClient> | undefined;
+
+// Server-side Supabase client with service role - bypasses RLS
+// SECURITY: Only use this for trusted server-side operations, never expose to client code
+// Import like: import { supabaseAdmin } from "@/integrations/supabase/client.server";
+export const supabaseAdmin = new Proxy({} as ReturnType<typeof createSupabaseAdminClient>, {
+  get(_, prop, receiver) {
+    if (!_supabaseAdmin) _supabaseAdmin = createSupabaseAdminClient();
+    return Reflect.get(_supabaseAdmin, prop, receiver);
+  },
+});
+
+--- src/integrations/supabase/auth-middleware.ts ---
+// This file is automatically generated. Do not edit it directly.
+import { createMiddleware } from '@tanstack/react-start'
+import { getRequest } from '@tanstack/react-start/server'
+import { createClient } from '@supabase/supabase-js'
+import type { Database } from './types'
+
+
+
+export const requireSupabaseAuth = createMiddleware({ type: 'function' }).server(
+  async ({ next }) => {
+    
+    const SUPABASE_URL = process.env.SUPABASE_URL;
+    const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY;
+
+    if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+      const missing = [
+        ...(!SUPABASE_URL ? ['SUPABASE_URL'] : []),
+        ...(!SUPABASE_PUBLISHABLE_KEY ? ['SUPABASE_PUBLISHABLE_KEY'] : []),
+      ];
+      const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
+      console.error(`[Supabase] ${message}`);
+      throw new Error(message);
+    }
+    
+    const request = getRequest();
+
+    if (!request?.headers) {
+      throw new Error('Unauthorized: No request headers available');
+    }
+
+    const authHeader = request.headers.get('authorization');
+
+    if (!authHeader) {
+      throw new Error('Unauthorized: No authorization header provided');
+    }
+
+    if (!authHeader.startsWith('Bearer ')) {
+      throw new Error('Unauthorized: Only Bearer tokens are supported');
+    }
+
+    const token = authHeader.replace('Bearer ', '');
+    if (!token) {
+      throw new Error('Unauthorized: No token provided');
+    }
+
+    const supabase = createClient<Database>(
+      SUPABASE_URL!,
+      SUPABASE_PUBLISHABLE_KEY!,
+      {
+        global: {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+        auth: {
+          storage: undefined,
+          persistSession: false,
+          autoRefreshToken: false,
+        },
+      }
+    );
+
+    const { data, error } = await supabase.auth.getClaims(token);
+    if (error || !data?.claims) {
+      throw new Error('Unauthorized: Invalid token');
+    }
+
+    if (!data.claims.sub) {
+      throw new Error('Unauthorized: No user ID found in token');
+    }
+
+    return next({
+      context: {
+        supabase,
+        userId: data.claims.sub,
+        claims: data.claims,
+      },
+    });
+  },
+);
+
+--- src/integrations/supabase/auth-attacher.ts ---
+// This file is automatically generated. Do not edit it directly.
+import { createMiddleware } from '@tanstack/react-start'
+import { supabase } from './client'
+
+// Must be registered as a global `functionMiddleware` in `src/start.ts`; otherwise
+// the browser never attaches the bearer token to serverFn RPCs.
+export const attachSupabaseAuth = createMiddleware({ type: 'function' }).client(
+  async ({ next }) => {
+    const { data } = await supabase.auth.getSession()
+    const token = data.session?.access_token
+    return next({
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    })
+  },
+)
+
+--- supabase/migrations/20260602205127_bd2678bd-fba3-45d1-b107-8c6004cabf44.sql ---
+
+-- ============ ENUMS ============
+CREATE TYPE public.app_role AS ENUM ('admin', 'waiter', 'kitchen', 'cashier');
+CREATE TYPE public.table_status AS ENUM ('free', 'occupied');
+CREATE TYPE public.comanda_status AS ENUM ('open', 'closed');
+CREATE TYPE public.order_status AS ENUM ('pending', 'preparing', 'ready', 'delivered', 'cancelled');
+CREATE TYPE public.payment_method AS ENUM ('pix', 'card');
+CREATE TYPE public.payment_status AS ENUM ('pending', 'paid');
+
+-- ============ PROFILES ============
+CREATE TABLE public.profiles (
+  id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  full_name TEXT NOT NULL DEFAULT '',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+GRANT SELECT, INSERT, UPDATE ON public.profiles TO authenticated;
+GRANT ALL ON public.profiles TO service_role;
+ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "profiles_select_all" ON public.profiles FOR SELECT TO authenticated USING (true);
+CREATE POLICY "profiles_update_own" ON public.profiles FOR UPDATE TO authenticated USING (auth.uid() = id);
+
+-- ============ USER ROLES ============
+CREATE TABLE public.user_roles (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  role public.app_role NOT NULL,
+  UNIQUE(user_id, role)
+);
+GRANT SELECT ON public.user_roles TO authenticated;
+GRANT ALL ON public.user_roles TO service_role;
+ALTER TABLE public.user_roles ENABLE ROW LEVEL SECURITY;
+
+CREATE OR REPLACE FUNCTION public.has_role(_user_id UUID, _role public.app_role)
+RETURNS BOOLEAN
+LANGUAGE SQL STABLE SECURITY DEFINER SET search_path = public
+AS $$
+  SELECT EXISTS (SELECT 1 FROM public.user_roles WHERE user_id = _user_id AND role = _role)
+$$;
+
+CREATE POLICY "user_roles_select_own_or_admin" ON public.user_roles FOR SELECT TO authenticated
+  USING (user_id = auth.uid() OR public.has_role(auth.uid(), 'admin'));
+CREATE POLICY "user_roles_admin_all" ON public.user_roles FOR ALL TO authenticated
+  USING (public.has_role(auth.uid(), 'admin')) WITH CHECK (public.has_role(auth.uid(), 'admin'));
+
+-- Auto profile + first user = admin
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS TRIGGER LANGUAGE PLPGSQL SECURITY DEFINER SET search_path = public
+AS $$
+DECLARE _count INT;
+BEGIN
+  INSERT INTO public.profiles (id, full_name)
+  VALUES (NEW.id, COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.email));
+  SELECT COUNT(*) INTO _count FROM auth.users;
+  IF _count = 1 THEN
+    INSERT INTO public.user_roles (user_id, role) VALUES (NEW.id, 'admin');
+    INSERT INTO public.user_roles (user_id, role) VALUES (NEW.id, 'waiter');
+    INSERT INTO public.user_roles (user_id, role) VALUES (NEW.id, 'kitchen');
+    INSERT INTO public.user_roles (user_id, role) VALUES (NEW.id, 'cashier');
+  END IF;
+  RETURN NEW;
+END;
+$$;
+CREATE TRIGGER on_auth_user_created AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
+
+-- ============ TABLES (mesas) ============
+CREATE TABLE public.restaurant_tables (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  number INT NOT NULL UNIQUE,
+  seats INT NOT NULL DEFAULT 4,
+  status public.table_status NOT NULL DEFAULT 'free',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.restaurant_tables TO authenticated;
+GRANT ALL ON public.restaurant_tables TO service_role;
+ALTER TABLE public.restaurant_tables ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "tables_select_auth" ON public.restaurant_tables FOR SELECT TO authenticated USING (true);
+CREATE POLICY "tables_admin_write" ON public.restaurant_tables FOR ALL TO authenticated
+  USING (public.has_role(auth.uid(), 'admin')) WITH CHECK (public.has_role(auth.uid(), 'admin'));
+CREATE POLICY "tables_staff_update" ON public.restaurant_tables FOR UPDATE TO authenticated
+  USING (public.has_role(auth.uid(),'waiter') OR public.has_role(auth.uid(),'cashier'));
+
+-- ============ INGREDIENTS ============
+CREATE TABLE public.ingredients (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL UNIQUE,
+  unit TEXT NOT NULL DEFAULT 'un',
+  stock NUMERIC NOT NULL DEFAULT 0,
+  min_stock NUMERIC NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.ingredients TO authenticated;
+GRANT ALL ON public.ingredients TO service_role;
+ALTER TABLE public.ingredients ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "ing_select_auth" ON public.ingredients FOR SELECT TO authenticated USING (true);
+CREATE POLICY "ing_admin_write" ON public.ingredients FOR ALL TO authenticated
+  USING (public.has_role(auth.uid(),'admin')) WITH CHECK (public.has_role(auth.uid(),'admin'));
+
+-- ============ MENU ITEMS ============
+CREATE TABLE public.menu_items (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL,
+  description TEXT NOT NULL DEFAULT '',
+  category TEXT NOT NULL DEFAULT 'Pratos',
+  price NUMERIC NOT NULL CHECK (price >= 0),
+  image_url TEXT,
+  available BOOLEAN NOT NULL DEFAULT true,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.menu_items TO authenticated;
+GRANT ALL ON public.menu_items TO service_role;
+ALTER TABLE public.menu_items ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "menu_select_auth" ON public.menu_items FOR SELECT TO authenticated USING (true);
+CREATE POLICY "menu_admin_write" ON public.menu_items FOR ALL TO authenticated
+  USING (public.has_role(auth.uid(),'admin')) WITH CHECK (public.has_role(auth.uid(),'admin'));
+
+-- ============ RECIPE ============
+CREATE TABLE public.menu_item_ingredients (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  menu_item_id UUID NOT NULL REFERENCES public.menu_items(id) ON DELETE CASCADE,
+  ingredient_id UUID NOT NULL REFERENCES public.ingredients(id) ON DELETE CASCADE,
+  quantity NUMERIC NOT NULL CHECK (quantity > 0),
+  UNIQUE(menu_item_id, ingredient_id)
+);
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.menu_item_ingredients TO authenticated;
+GRANT ALL ON public.menu_item_ingredients TO service_role;
+ALTER TABLE public.menu_item_ingredients ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "mi_select_auth" ON public.menu_item_ingredients FOR SELECT TO authenticated USING (true);
+CREATE POLICY "mi_admin_write" ON public.menu_item_ingredients FOR ALL TO authenticated
+  USING (public.has_role(auth.uid(),'admin')) WITH CHECK (public.has_role(auth.uid(),'admin'));
+
+-- ============ COMANDAS ============
+CREATE TABLE public.comandas (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  table_id UUID NOT NULL REFERENCES public.restaurant_tables(id),
+  customer_name TEXT NOT NULL DEFAULT 'Cliente',
+  status public.comanda_status NOT NULL DEFAULT 'open',
+  opened_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  closed_at TIMESTAMPTZ,
+  opened_by UUID REFERENCES auth.users(id)
+);
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.comandas TO authenticated;
+GRANT ALL ON public.comandas TO service_role;
+ALTER TABLE public.comandas ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "com_select_auth" ON public.comandas FOR SELECT TO authenticated USING (true);
+CREATE POLICY "com_insert_auth" ON public.comandas FOR INSERT TO authenticated WITH CHECK (true);
+CREATE POLICY "com_update_auth" ON public.comandas FOR UPDATE TO authenticated USING (true);
+
+-- ============ ORDERS ============
+CREATE TABLE public.orders (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  comanda_id UUID NOT NULL REFERENCES public.comandas(id) ON DELETE CASCADE,
+  status public.order_status NOT NULL DEFAULT 'pending',
+  notes TEXT DEFAULT '',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  ready_at TIMESTAMPTZ,
+  delivered_at TIMESTAMPTZ
+);
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.orders TO authenticated;
+GRANT ALL ON public.orders TO service_role;
+ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "ord_select_auth" ON public.orders FOR SELECT TO authenticated USING (true);
+CREATE POLICY "ord_insert_auth" ON public.orders FOR INSERT TO authenticated WITH CHECK (true);
+CREATE POLICY "ord_update_auth" ON public.orders FOR UPDATE TO authenticated USING (true);
+
+-- ============ ORDER ITEMS ============
+CREATE TABLE public.order_items (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  order_id UUID NOT NULL REFERENCES public.orders(id) ON DELETE CASCADE,
+  menu_item_id UUID NOT NULL REFERENCES public.menu_items(id),
+  quantity INT NOT NULL DEFAULT 1 CHECK (quantity > 0),
+  unit_price NUMERIC NOT NULL,
+  notes TEXT DEFAULT ''
+);
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.order_items TO authenticated;
+GRANT ALL ON public.order_items TO service_role;
+ALTER TABLE public.order_items ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "oi_select_auth" ON public.order_items FOR SELECT TO authenticated USING (true);
+CREATE POLICY "oi_insert_auth" ON public.order_items FOR INSERT TO authenticated WITH CHECK (true);
+CREATE POLICY "oi_update_auth" ON public.order_items FOR UPDATE TO authenticated USING (true);
+
+-- ============ PAYMENTS ============
+CREATE TABLE public.payments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  comanda_id UUID NOT NULL REFERENCES public.comandas(id) ON DELETE CASCADE,
+  method public.payment_method NOT NULL,
+  amount NUMERIC NOT NULL CHECK (amount >= 0),
+  status public.payment_status NOT NULL DEFAULT 'pending',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  paid_at TIMESTAMPTZ,
+  cashier_id UUID REFERENCES auth.users(id)
+);
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.payments TO authenticated;
+GRANT ALL ON public.payments TO service_role;
+ALTER TABLE public.payments ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "pay_select_auth" ON public.payments FOR SELECT TO authenticated USING (true);
+CREATE POLICY "pay_insert_auth" ON public.payments FOR INSERT TO authenticated WITH CHECK (true);
+CREATE POLICY "pay_update_auth" ON public.payments FOR UPDATE TO authenticated USING (true);
+
+-- ============ STOCK CHECK + DECREMENT FUNCTION ============
+-- Called from app to atomically check availability and decrement ingredients
+CREATE OR REPLACE FUNCTION public.place_order(
+  _comanda_id UUID,
+  _items JSONB,   -- [{menu_item_id, quantity, notes}]
+  _notes TEXT DEFAULT ''
+) RETURNS JSONB
+LANGUAGE PLPGSQL SECURITY DEFINER SET search_path = public
+AS $$
+DECLARE
+  _item JSONB;
+  _mi_id UUID;
+  _qty INT;
+  _ing RECORD;
+  _missing TEXT[] := '{}';
+  _order_id UUID;
+  _price NUMERIC;
+BEGIN
+  -- Check ingredient availability
+  FOR _item IN SELECT * FROM jsonb_array_elements(_items) LOOP
+    _mi_id := (_item->>'menu_item_id')::UUID;
+    _qty := (_item->>'quantity')::INT;
+    FOR _ing IN
+      SELECT i.id, i.name, i.stock, i.unit, mi.quantity * _qty AS needed
+      FROM public.menu_item_ingredients mi
+      JOIN public.ingredients i ON i.id = mi.ingredient_id
+      WHERE mi.menu_item_id = _mi_id
+    LOOP
+      IF _ing.stock < _ing.needed THEN
+        _missing := array_append(_missing, _ing.name || ' (precisa ' || _ing.needed || _ing.unit || ', tem ' || _ing.stock || _ing.unit || ')');
+      END IF;
+    END LOOP;
+  END LOOP;
+
+  IF array_length(_missing, 1) > 0 THEN
+    RETURN jsonb_build_object('success', false, 'missing', _missing);
+  END IF;
+
+  -- Create order
+  INSERT INTO public.orders (comanda_id, notes) VALUES (_comanda_id, _notes) RETURNING id INTO _order_id;
+
+  -- Insert items + decrement stock
+  FOR _item IN SELECT * FROM jsonb_array_elements(_items) LOOP
+    _mi_id := (_item->>'menu_item_id')::UUID;
+    _qty := (_item->>'quantity')::INT;
+    SELECT price INTO _price FROM public.menu_items WHERE id = _mi_id;
+    INSERT INTO public.order_items (order_id, menu_item_id, quantity, unit_price, notes)
+    VALUES (_order_id, _mi_id, _qty, _price, COALESCE(_item->>'notes',''));
+
+    UPDATE public.ingredients i
+    SET stock = i.stock - (mi.quantity * _qty)
+    FROM public.menu_item_ingredients mi
+    WHERE mi.menu_item_id = _mi_id AND mi.ingredient_id = i.id;
+  END LOOP;
+
+  RETURN jsonb_build_object('success', true, 'order_id', _order_id);
+END;
+$$;
+
+GRANT EXECUTE ON FUNCTION public.place_order(UUID, JSONB, TEXT) TO authenticated;
+
+-- Realtime
+ALTER TABLE public.orders REPLICA IDENTITY FULL;
+ALTER TABLE public.order_items REPLICA IDENTITY FULL;
+ALTER TABLE public.comandas REPLICA IDENTITY FULL;
+ALTER TABLE public.payments REPLICA IDENTITY FULL;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.orders;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.order_items;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.comandas;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.payments;
+
+--- src/routeTree.gen.ts (auto-generated) ---
+/* eslint-disable */
+
+// @ts-nocheck
+
+// noinspection JSUnusedGlobalSymbols
+
+// This file was automatically generated by TanStack Router.
+// You should NOT make any changes in this file as it will be overwritten.
+// Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
+
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedTablesRouteImport } from './routes/_authenticated/tables'
+import { Route as AuthenticatedKitchenRouteImport } from './routes/_authenticated/kitchen'
+import { Route as AuthenticatedCashierRouteImport } from './routes/_authenticated/cashier'
+import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedComandaIdRouteImport } from './routes/_authenticated/comanda.$id'
+
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedTablesRoute = AuthenticatedTablesRouteImport.update({
+  id: '/tables',
+  path: '/tables',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedKitchenRoute = AuthenticatedKitchenRouteImport.update({
+  id: '/kitchen',
+  path: '/kitchen',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCashierRoute = AuthenticatedCashierRouteImport.update({
+  id: '/cashier',
+  path: '/cashier',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAppRoute = AuthenticatedAppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedComandaIdRoute = AuthenticatedComandaIdRouteImport.update({
+  id: '/comanda/$id',
+  path: '/comanda/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/app': typeof AuthenticatedAppRoute
+  '/cashier': typeof AuthenticatedCashierRoute
+  '/kitchen': typeof AuthenticatedKitchenRoute
+  '/tables': typeof AuthenticatedTablesRoute
+  '/comanda/$id': typeof AuthenticatedComandaIdRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/app': typeof AuthenticatedAppRoute
+  '/cashier': typeof AuthenticatedCashierRoute
+  '/kitchen': typeof AuthenticatedKitchenRoute
+  '/tables': typeof AuthenticatedTablesRoute
+  '/comanda/$id': typeof AuthenticatedComandaIdRoute
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/app': typeof AuthenticatedAppRoute
+  '/_authenticated/cashier': typeof AuthenticatedCashierRoute
+  '/_authenticated/kitchen': typeof AuthenticatedKitchenRoute
+  '/_authenticated/tables': typeof AuthenticatedTablesRoute
+  '/_authenticated/comanda/$id': typeof AuthenticatedComandaIdRoute
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/admin'
+    | '/app'
+    | '/cashier'
+    | '/kitchen'
+    | '/tables'
+    | '/comanda/$id'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/auth'
+    | '/admin'
+    | '/app'
+    | '/cashier'
+    | '/kitchen'
+    | '/tables'
+    | '/comanda/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/admin'
+    | '/_authenticated/app'
+    | '/_authenticated/cashier'
+    | '/_authenticated/kitchen'
+    | '/_authenticated/tables'
+    | '/_authenticated/comanda/$id'
+  fileRoutesById: FileRoutesById
+}
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/tables': {
+      id: '/_authenticated/tables'
+      path: '/tables'
+      fullPath: '/tables'
+      preLoaderRoute: typeof AuthenticatedTablesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/kitchen': {
+      id: '/_authenticated/kitchen'
+      path: '/kitchen'
+      fullPath: '/kitchen'
+      preLoaderRoute: typeof AuthenticatedKitchenRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/cashier': {
+      id: '/_authenticated/cashier'
+      path: '/cashier'
+      fullPath: '/cashier'
+      preLoaderRoute: typeof AuthenticatedCashierRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/app': {
+      id: '/_authenticated/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AuthenticatedAppRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/comanda/$id': {
+      id: '/_authenticated/comanda/$id'
+      path: '/comanda/$id'
+      fullPath: '/comanda/$id'
+      preLoaderRoute: typeof AuthenticatedComandaIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+  }
+}
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedAppRoute: typeof AuthenticatedAppRoute
+  AuthenticatedCashierRoute: typeof AuthenticatedCashierRoute
+  AuthenticatedKitchenRoute: typeof AuthenticatedKitchenRoute
+  AuthenticatedTablesRoute: typeof AuthenticatedTablesRoute
+  AuthenticatedComandaIdRoute: typeof AuthenticatedComandaIdRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedAppRoute: AuthenticatedAppRoute,
+  AuthenticatedCashierRoute: AuthenticatedCashierRoute,
+  AuthenticatedKitchenRoute: AuthenticatedKitchenRoute,
+  AuthenticatedTablesRoute: AuthenticatedTablesRoute,
+  AuthenticatedComandaIdRoute: AuthenticatedComandaIdRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+}
+export const routeTree = rootRouteImport
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
+
+================================================================================
+  NOTAS:
+  - Os componentes UI em src/components/ui/ são do shadcn/ui (padrão).
+  - Arquivos auxiliares como src/hooks/use-mobile.tsx, src/lib/error-capture.ts,
+    src/lib/error-page.ts, src/lib/lovable-error-reporting.ts, src/lib/config.server.ts
+    e src/lib/api/example.functions.ts são boilerplate do template.
+  - supabase/config.toml é gerado automaticamente pelo Lovable Cloud.
+================================================================================
