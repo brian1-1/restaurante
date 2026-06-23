@@ -1,4 +1,1 @@
-# restaurante
-
-Um site feito pelo Lovable.
-Projeto incial, pequenos rascunhos e edições.
+site: https://kitchen-magic-tray.lovable.app
